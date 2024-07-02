@@ -7,9 +7,9 @@ import winsound
 
 url_wemix_token = "https://api.wemixplay.com/info/v2/price-chart?symbol=CROW&range=1d"
 sleep_time_request = 300
-price_to_alert = 0.75
+price_to_alert = 0.7497 # the game round to 0.75 so check never got triggered.
 
-print("Script - V 00.00.00")
+print("Script - V 00.00.01")
 
 def wait(text=None):
 
@@ -64,9 +64,12 @@ def beep():
     duration = 500 
     winsound.Beep(frequency, duration)
 
+def wipe():
+    clear = "\n" * 150
+    print(clear)
+
 while(True):
-
-
+    
     request = urllib.request.Request(url_wemix_token)
     response = urllib.request.urlopen(request)
 
@@ -80,4 +83,5 @@ while(True):
     print_prices(values)
 
     wait()
+    wipe()
 
